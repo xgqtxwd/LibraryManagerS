@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xu.mapper.BookMapper">
+   <select id="listBooks" resultType="com.xu.pojo.Book">
+       select * from book
+       <where>
+           <if test="title!=null">
+               title like CONCAT('%', #{title}, '%')
+           </if>
+          <if test="writer!=null">
+            and  writer like CONCAT('%', #{writer}, '%')
+          </if>
+       </where>
+   </select>
+    <select id="listReturnBooks" resultType="com.xu.pojo.Book">
+        select * from borrow_records
+        <where>
+            <if test="title!=null">
+                title like CONCAT('%', #{title}, '%')
+            </if>
+            <if test="writer!=null">
+                and  writer like CONCAT('%', #{writer}, '%')
+            </if>
+            and isreturn=0 and user_id=#{userId}
+        </where>
+    </select>
+
+
+</mapper>
