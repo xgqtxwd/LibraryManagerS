@@ -10,7 +10,8 @@ import {
   Crop,
   EditPen,
   SwitchButton,
-  CaretBottom
+  CaretBottom,
+  House
 } from '@element-plus/icons-vue'
 import avatar from '@/assets/default.png'
 import {getUserInfoService} from "@/api/user.js";
@@ -71,19 +72,19 @@ const handleCommand = (command) => {
       <div class="el-aside__logo"></div>
       <el-menu active-text-color="#ffd04b" background-color="#232323"  text-color="#fff"
                router>
+        <el-menu-item index="/home">
+          <el-icon>
+            <House />
+          </el-icon>
+          <span>首页</span>
+        </el-menu-item>
         <el-menu-item index="/book/category">
           <el-icon>
             <Management />
           </el-icon>
           <span>图书分类</span>
         </el-menu-item>
-<!--        <el-menu-item index="/book/manage">-->
-<!--          <el-icon>-->
-<!--            <Promotion />-->
-<!--          </el-icon>-->
-<!--          <span>图书管理</span>-->
-<!--        </el-menu-item>-->
-        <el-sub-menu  >
+        <el-sub-menu index="1">
           <template #title >
               <el-icon>
                 <Setting />
@@ -101,7 +102,7 @@ const handleCommand = (command) => {
             <span>归还图书</span>
           </el-menu-item>
         </el-sub-menu>
-        <el-sub-menu  >
+        <el-sub-menu index="2">
           <template #title>
             <el-icon>
               <UserFilled />

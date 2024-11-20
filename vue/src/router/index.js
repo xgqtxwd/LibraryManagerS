@@ -8,9 +8,11 @@ import bookBorrowVue from '@/views/book/BookBorrow.vue'
 import UserAvatarVue from '@/views/user/UserAvatar.vue'
 import UserInfoVue from '@/views/user/UserInfo.vue'
 import UserResetPasswordVue from '@/views/user/UserResetPassword.vue'
+import HomePage from '@/views/HomePage.vue';
 const routes = [
-    {path: '/', component: mainPage,redirect: '/book/borrow',
+    {path: '/', component: mainPage,redirect: '/home',
     children:[
+        {path:'/home', component: HomePage},
         {path:'/book/category',component:bookCategoryVue},
         {path:'/book/borrow',component:bookBorrowVue},
         {path: '/user/avatar',component:UserAvatarVue},

@@ -105,6 +105,14 @@ const borrowAgain = async (row) => {
   ElMessage.success(result.msg?result.msg:"续借成功")
   bookReturnList();
 }
+
+// 重置搜索条件
+const resetSearch = () => {
+  bookTitle.value = ''
+  authorName.value = ''
+  categoryId.value = ''
+  // 如果有其他需要重置的内容，也可以在这里添加
+}
 </script>
 
 <template>
@@ -126,9 +134,9 @@ const borrowAgain = async (row) => {
 
       <el-form-item>
         <el-button type="primary" @click="bookList()">搜索</el-button>
-        <el-button @click="">重置</el-button>
+        <el-button @click="resetSearch()">重置</el-button>
       </el-form-item>
-    </el-form>
+    </el-form> 
 
     <!-- 文章列表 -->
     <el-table :data="articles" style="width: 100%">
