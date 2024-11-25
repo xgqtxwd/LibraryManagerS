@@ -15,6 +15,11 @@ export  const bookUpdateService = (bookDate) => {
   return request.put('/book/update',bookDate)
 }
 
+export const bookAddService = (book) => {
+  return request.post('/book/add', book);
+}
+
+
 export const bookReturnListService = (parms) => {
   return request.get('/book/still',{params:parms})
 }

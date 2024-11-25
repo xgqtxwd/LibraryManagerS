@@ -35,4 +35,6 @@ public interface BookMapper {
     List<Book> listReturnBooks(Integer userId,String title, String writer);
 @Select("select * from borrow_records where id=#{id}")
 BorrowRecords searchInRecords(Integer id);
+@Insert("insert into book(title,content,writer,category_id,cover_img,quantity) values(#{title},#{content},#{writer},#{categoryId},#{coverImg},#{quantity})")
+    void addBook(Book book);
 }

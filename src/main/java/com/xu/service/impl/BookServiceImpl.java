@@ -74,4 +74,9 @@ public class BookServiceImpl implements BookService {
         return bookPageBean;
     }
 
+    @Override
+    public void addBook(Book book) {
+        bookMapper.addBook(book);
+    }
+
 }

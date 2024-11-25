@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xu.mapper.AnnouncementMapper">
+    <!-- 查询所有公告 -->
+    <select id="getAllAnnouncements" resultType="com.xu.pojo.Announcement">
+        SELECT * FROM announcements
+    </select>
+
+    <!-- 添加公告 -->
+    <insert id="addAnnouncement" parameterType="com.xu.pojo.Announcement">
+        INSERT INTO announcements (title, content, publish_date, expiration_date, is_active, create_user_id)
+        VALUES (#{title}, #{content}, #{publishDate}, #{expirationDate}, #{isActive}, #{createUserId})
+    </insert>
+
+    <!-- 更新公告 -->
+    <update id="updateAnnouncement" parameterType="com.xu.pojo.Announcement">
+        UPDATE announcements
+        SET title = #{title}, content = #{content}, publish_date = #{publishDate}, expiration_date = #{expirationDate}, is_active = #{isActive}
+        WHERE id = #{id}
+    </update>
+
+    <!-- 删除公告 -->
+    <delete id="deleteAnnouncement" parameterType="int">
+        DELETE FROM announcements WHERE id = #{id}
+    </delete>
+
+</mapper>

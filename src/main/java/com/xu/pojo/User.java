@@ -12,7 +12,6 @@ import java.time.LocalDateTime;
 public class User {
     @NotNull
     private Integer id;//主键ID
-    @JsonIgnore
     private Integer privilegeLevel;//权限等级;
     private String username;//用户名
     @JsonIgnore

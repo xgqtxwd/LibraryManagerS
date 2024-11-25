@@ -1,11 +1,13 @@
 package com.xu.controller;
 import com.xu.pojo.PageBean;
 import com.xu.pojo.User;
+import com.xu.utils.IsAdminUtil;
 import com.xu.utils.ThreadLocalUtil;
 
 import com.xu.pojo.Book;
 import com.xu.pojo.Result;
 import com.xu.service.BookService;
+
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -20,7 +22,8 @@ import static java.time.LocalDateTime.now;
 @RequestMapping("/book")
 
 public class BookController {
-
+    @Autowired
+    private IsAdminUtil isAdminUtil;
     @Autowired
     private BookService bookService;
     @Autowired
@@ -58,14 +61,10 @@ public class BookController {
     // 更新书籍信息
     @PutMapping("/update")
     public Result updateBook(@RequestBody Book book) {
-
-
-        Map<String, Object> map = ThreadLocalUtil.get();
-        String username = (String) map.get("username");
-        log.info("Updating book by username: " + username);
-        User user = userServiceImpl.findByUserName(username);
-        if(user.getPrivilegeLevel()!=1){
-            return Result.error("权限不足，请联系管理员");
+        // 检查用户是否为管理员
+        if(!isAdminUtil.isAdminUser())
+        {
+            return Result.error("您没有权限执行此操作");
         }
         bookService.updateBook(book);
         return Result.success();
@@ -85,6 +84,16 @@ public Result<PageBean<Book>> listReturnBooks(Integer pageNum, Integer pageSize,
     public Result returnBook(Integer id) {
 
         bookService.returnBook(id);
+        return Result.success();
+    }
+    @PostMapping("/add")
+    public Result addBook(@RequestBody Book book) {
+        // 检查用户是否为管理员
+        if(!isAdminUtil.isAdminUser())
+        {
+            return Result.error("您没有权限执行此操作");
+        }
+        bookService.addBook(book);
         return Result.success();
     }
 

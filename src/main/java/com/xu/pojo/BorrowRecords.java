@@ -8,8 +8,10 @@ import java.time.LocalDateTime;
 public class BorrowRecords {
     private Integer id; // 借阅记录ID
     private Integer userId; // 用户ID
+    private String username; // 用户对象
     private Integer bookId; // 图书ID
-    private LocalDateTime borrowDate; // 借阅日期
-    private LocalDateTime returnDate; // 归还日期
+    private LocalDateTime borrowTime; // 借阅日期
+    private LocalDateTime endTime; // 归还日期
+
     private Boolean isReturn; // 是否已归还
 }

@@ -113,6 +113,11 @@ const resetSearch = () => {
   categoryId.value = ''
   // 如果有其他需要重置的内容，也可以在这里添加
 }
+// 格式化日期
+const formatDate = (dateString) => {
+  const options = { year: 'numeric', month: 'long', day: 'numeric' };
+  return new Date(dateString).toLocaleDateString('zh-CN', options);
+};
 </script>
 
 <template>
@@ -148,8 +153,16 @@ const resetSearch = () => {
         </template>
       </el-table-column>
       <el-table-column label="作者" width="200" prop="writer"></el-table-column>
-      <el-table-column label="借阅时间" width="200" prop="borrowingTime"></el-table-column>
-      <el-table-column label="归还期限" width="200" prop="endTime"></el-table-column>
+      <el-table-column label="借阅时间" width="200" prop="borrowingTime">
+        <template #default="scope">
+          {{ formatDate(scope.row.borrowingTime) }}
+        </template>
+      </el-table-column>
+      <el-table-column label="归还期限" width="200" prop="endTime">
+        <template #default="scope">
+          {{ formatDate(scope.row.endTime) }}
+        </template>
+      </el-table-column>
       <el-table-column label="操作" width="200">
         <template #default="{ row }">
           <el-button type="success" plain @click="borrowAgain(row)">续借</el-button>
