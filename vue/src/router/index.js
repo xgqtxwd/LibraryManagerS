@@ -9,6 +9,9 @@ import UserAvatarVue from '@/views/user/UserAvatar.vue'
 import UserInfoVue from '@/views/user/UserInfo.vue'
 import UserResetPasswordVue from '@/views/user/UserResetPassword.vue'
 import HomePage from '@/views/HomePage.vue';
+import AnnouncementVue from '@/views/admin/announceM.vue'
+import UserManageVue from '@/views/admin/userM.vue'
+import OverdueVue from '@/views/admin/overdue.vue'
 const routes = [
     {path: '/', component: mainPage,redirect: '/home',
     children:[
@@ -19,6 +22,9 @@ const routes = [
         {path: '/user/info',component:UserInfoVue},
         {path: '/user/resetPassword',component:UserResetPasswordVue},
         {path:'/book/still',component:bookStillVue},
+        {path:'/admin/announce',component:AnnouncementVue},
+        {path:'/admin/userMange',component:UserManageVue},
+        {path:'/admin/overdue',component:OverdueVue},
     ]
     },
     {path:'/login',component:loginVue},

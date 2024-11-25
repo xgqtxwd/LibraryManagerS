@@ -26,5 +26,26 @@ export const updateUserInfoService = (userInfo) => {
 export const userAvatarService = (avatarData) => {
     const params=new  URLSearchParams()
     params.append('avatarData',avatarData);
-    return  request.patch('/user/avatar?avatar=',+avatarData)
+    return  request.patch('/user/avatar',params)
 }
+export const getUsers = () => {
+  return request.get('/home/admin/users');
+};
+
+export const addUser = (user) => {
+  return request.post('/home/admin/users', user);
+};
+
+export const updateUser = (user) => {
+  return request.put(`/home/admin/users/${user.id}`, user);
+};
+
+export const deleteUser = (id) => {
+  return request.delete(`/home/admin/users/${id}`);
+};
+
+export const changeUserPassword = (id, newPassword) => {
+  const params = new URLSearchParams();
+  params.append('newPassword', newPassword);
+  return request.put(`/home/admin/users/${id}/password`, params);
+};

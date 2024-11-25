@@ -11,8 +11,16 @@ export const bookBorrowService = (id) => {
   return request.get('/book/borrowed?id='+id)
 }
 
-export  const bookUpdateService = (bookDate) => {
+export const bookUpdateService = (bookDate) => {
   return request.put('/book/update',bookDate)
+}
+
+export const bookAddService = (book) => {
+  return request.post('/book/add', book);
+}
+
+export const bookDeleteService = (id) => {
+  return request.delete(`/book/delete/${id}`);
 }
 
 export const bookReturnListService = (parms) => {

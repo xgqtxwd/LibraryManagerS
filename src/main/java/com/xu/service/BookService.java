@@ -20,4 +20,7 @@ public interface BookService {
 
     PageBean<Book> listReturnBooks(Integer userId,Integer pageNum, Integer pageSize, String title, String writer);
 
+    void addBook(Book book);
+
+    void deleteBook(Integer id);
 }

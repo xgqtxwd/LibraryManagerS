@@ -10,4 +10,14 @@ import java.util.List;
 public interface AnnouncementService {
 
     public List<Announcement> getActiveAnnouncements();
+    public List<Announcement> getAllAnnouncements() ;
+
+    public void addAnnouncement(Announcement announcement) ;
+
+    public void updateAnnouncement(Announcement announcement);
+
+    public void deleteAnnouncement(int id) ;
+
+
+
 }

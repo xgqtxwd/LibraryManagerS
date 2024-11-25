@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xu.mapper.VisualizationMapper">
+    <!-- 查询最受欢迎书籍 -->
+    <select id="getPopularBooks" resultType="com.xu.pojo.BookRanking">
+        SELECT b.title, COUNT(br.id) AS borrowCount
+        FROM book b
+                 JOIN borrow_records br ON b.id = br.book_id
+        GROUP BY b.title
+        ORDER BY borrowCount DESC
+            LIMIT 5
+    </select>
+    <!-- 查询借书用户排行 -->
+    <select id="getTopUsers" resultType="com.xu.pojo.UserRanking">
+        SELECT u.username, COUNT(br.id) AS borrowCount
+        FROM user u
+                 JOIN borrow_records br ON u.id = br.user_id
+        GROUP BY u.username
+        ORDER BY borrowCount DESC
+            LIMIT 5
+    </select>
+
+</mapper>

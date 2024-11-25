@@ -8,6 +8,25 @@ spring:
     multipart:
       max-file-size: 10MB
       max-request-size: 100MB
+  mail:
+    #smtp服务主机  qq邮箱则为smtp.qq.com
+    host: smtp.qq.com
+    #服务协议
+    protocol: smtp
+    # 编码集
+    default-encoding: UTF-8
+    #发送邮件的账户
+    username: 2952234243@qq.com
+    #授权码
+    password: kxfzzggepmzjdggg
+    test-connection: true
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
 mybatis:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
@@ -25,3 +44,6 @@ aliyun:
 logging:
   level:
     org.springframework.jdbc.support.JdbcTransactionManager: debug
+#spring邮箱发送服务
+
+

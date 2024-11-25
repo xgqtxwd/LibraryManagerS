@@ -13,7 +13,7 @@ public interface CategoryMapper {
     void update(Category category);
     @Insert("insert into category (create_time,category_alias,category_name,create_user,update_time) VALUES (#{createTime},#{categoryAlias},#{categoryName},#{createUser},#{updateTime})")
     void insertCategory(Category category);
-    @Select("select * from category where create_user=#{id}")
+    @Select("select * from category")
    List<Category> listCategory(Integer id);
     @Select("select * from category where id=#{id}")
     Category findById(Integer id);

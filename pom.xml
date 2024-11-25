@@ -30,6 +30,11 @@
         <java.version>17</java.version>
     </properties>
     <dependencies>
+        <!--SpringBoot集成邮件发送启动器坐标-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-mail</artifactId>
+        </dependency>
         <dependency>
             <groupId>com.github.pagehelper</groupId>
             <artifactId>pagehelper-spring-boot-starter</artifactId>
