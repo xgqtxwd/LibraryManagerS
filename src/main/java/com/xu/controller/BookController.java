@@ -106,6 +106,12 @@ public Result<PageBean<Book>> listReturnBooks(Integer pageNum, Integer pageSize,
         bookService.deleteBook(id);
         return Result.success();
     }
+    @GetMapping("/again")
+    public Result borrowAgainRecords(@RequestParam("id") Integer id) {
+        bookService.borrowAgainRecords(id);
+        return Result.success();
+    }
+
 //
 //    @GetMapping("/detail")
 //    public Result<Book> detail(Integer id) {

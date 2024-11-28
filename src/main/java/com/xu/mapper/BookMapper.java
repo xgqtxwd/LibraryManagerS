@@ -29,7 +29,8 @@ public interface BookMapper {
 
    @Select("select * from book where id=#{id}")
     Book searchBooks(Integer id);
-
+    @Update("UPDATE borrow_records SET end_time = DATE_ADD(end_time, INTERVAL 7 DAY)WHERE id = #{id}")
+    void borrowAgainRecords(Integer id);
 
 
     List<Book> listReturnBooks(Integer userId,String title, String writer);

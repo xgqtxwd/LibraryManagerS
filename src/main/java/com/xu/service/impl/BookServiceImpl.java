@@ -84,4 +84,9 @@ public class BookServiceImpl implements BookService {
         bookMapper.deleteBook(id);
     }
 
+    @Override
+    public void borrowAgainRecords(Integer id) {
+        bookMapper.borrowAgainRecords(id);
+    }
+
 }

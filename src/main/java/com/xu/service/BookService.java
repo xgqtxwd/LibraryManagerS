@@ -23,4 +23,6 @@ public interface BookService {
     void addBook(Book book);
 
     void deleteBook(Integer id);
+
+    void borrowAgainRecords(Integer id);
 }

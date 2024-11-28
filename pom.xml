@@ -8,7 +8,7 @@
         <version>3.3.2</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.itheima</groupId>
+    <groupId>com.xu</groupId>
     <artifactId>LibraryManageS</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>LibraryManageS</name>
@@ -76,11 +76,7 @@
             <version>3.0.3</version>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>com.github.pagehelper</groupId>
-            <artifactId>pagehelper-spring-boot-starter</artifactId>
-            <version>1.4.6</version>
-        </dependency>
+
 <!--//阿里云oss依赖-->
         <dependency>
             <groupId>com.aliyun.oss</groupId>
