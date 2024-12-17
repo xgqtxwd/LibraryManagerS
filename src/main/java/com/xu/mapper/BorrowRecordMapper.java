@@ -13,6 +13,7 @@ public interface BorrowRecordMapper {
     List<BorrowRecords> findOverdueRecords();
     @Select("SELECT * FROM borrow_records WHERE isReturn = false AND end_time < NOW() AND user_id=#{personId}")
     List<BorrowRecords> findOverdueRecordsById(Integer personId);
-
+   @Select("SELECT status FROM overdue_records WHERE borrow_id=#{borrowId}")
+    Integer isPaid(Integer borrowId);
 }
 

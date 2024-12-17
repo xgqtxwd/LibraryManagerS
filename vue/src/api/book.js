@@ -32,3 +32,7 @@ export const bookReturnService = (id) => {
 export const borrowAgainService = (id) => {
   return request.get('/book/again?id='+id)
 }
+
+export const penaltyListService = (parms) => {
+  return request.get('/penalty/overdue',{params:parms})
+}

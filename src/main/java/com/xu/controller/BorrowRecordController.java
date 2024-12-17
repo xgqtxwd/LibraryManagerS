@@ -27,23 +27,24 @@ public class BorrowRecordController {
     private UserService userServiceImpl;
 
     @Autowired
-    private BorrowRecordService borrowRecordService;// 注入服务层接口
+    private BorrowRecordService borrowRecordServiceImpl;// 注入服务层接口
     @Autowired
     private EmailService emailService;
     // 获取逾期记录
 
     @GetMapping("/overdue")
     public Result<List<BorrowRecords>> getOverdueRecords() {
-        List<BorrowRecords> overdueRecords = borrowRecordService.getOverdueRecords();
+        List<BorrowRecords> overdueRecords = borrowRecordServiceImpl.getOverdueRecords();
         return Result.success(overdueRecords);
     }
     @GetMapping("/personal-overdue")
     public Result<List<BorrowRecords>> getOverdueRecordsByPersonId() {
         Map<String, Object> map = ThreadLocalUtil.get();
         Integer personId= (Integer) map.get("id");
-        List<BorrowRecords> overdueRecords = borrowRecordService.getOverdueRecordsById(personId);
+        List<BorrowRecords> overdueRecords = borrowRecordServiceImpl.getOverdueRecordsById(personId);
         return Result.success(overdueRecords);
     }
+
 
     @PostMapping("/send-reminder")
     public Result sendReminder(@RequestBody ReminderRequest request) {

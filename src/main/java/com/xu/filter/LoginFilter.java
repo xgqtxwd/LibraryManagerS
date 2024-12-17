@@ -21,7 +21,7 @@ import java.util.Map;
 public class LoginFilter implements Filter {
    //建立放行列表，不需要登录就能访问的路径
     private static final List<String> STATIC_EXTENSIONS = Arrays.asList(
-        "/login", "/register", "/public"
+        "/login", "/register", "/public","/pay","/notify"
 );
 
     @Override//初始化方法，可调用多次

@@ -8,4 +8,4 @@ export const getOverdueRecordsByUserId = () => {
 };
 export const sendReminder = (reminderData) => {
   return request.post('/home/admin/send-reminder', reminderData);
-}; 
+};
