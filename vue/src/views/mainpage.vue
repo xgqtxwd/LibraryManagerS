@@ -4,6 +4,7 @@ import {
   Promotion,
   UserFilled,
   View,
+  CreditCard,
   Setting,
   Refresh,
   User,
@@ -63,7 +64,7 @@ const handleCommand = (command) => {
     router.push('/user/' + command)
   }
 }
-</script>
+</script>；
 
 <template>
   <el-container class="layout-container">
@@ -99,6 +100,10 @@ const handleCommand = (command) => {
           <el-menu-item index="/book/still">
             <el-icon><Refresh /></el-icon>
             <span>归还图书</span>
+          </el-menu-item>
+          <el-menu-item index="/book/penaltyPay">
+          <el-icon><CreditCard /></el-icon>
+          <span>逾期罚款</span>
           </el-menu-item>
         </el-sub-menu>
         <el-sub-menu>

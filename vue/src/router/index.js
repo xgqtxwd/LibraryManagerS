@@ -7,6 +7,7 @@ import bookCategoryVue from '@/views/book/BookCategory.vue'
 import bookBorrowVue from '@/views/book/BookBorrow.vue'
 import UserAvatarVue from '@/views/user/UserAvatar.vue'
 import UserInfoVue from '@/views/user/UserInfo.vue'
+import PenaltyPay   from "@/views/book/PenalyPay.vue";
 import UserResetPasswordVue from '@/views/user/UserResetPassword.vue'
 import HomePage from '@/views/HomePage.vue';
 import AnnouncementVue from '@/views/admin/announceM.vue'
@@ -25,6 +26,7 @@ const routes = [
         {path:'/admin/announce',component:AnnouncementVue},
         {path:'/admin/userMange',component:UserManageVue},
         {path:'/admin/overdue',component:OverdueVue},
+        {path: '/book/penaltyPay',component:PenaltyPay},
     ]
     },
     {path:'/login',component:loginVue},

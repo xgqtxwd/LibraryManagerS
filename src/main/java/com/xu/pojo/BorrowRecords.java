@@ -10,7 +10,7 @@ public class BorrowRecords {
     private Integer userId; // 用户ID
     private String username; // 用户对象
     private Integer bookId; // 图书ID
-    private LocalDateTime borrowTime; // 借阅日期
+    private LocalDateTime borrowingTime; // 借阅日期
     private LocalDateTime endTime; // 归还日期
 
     private Boolean isReturn; // 是否已归还

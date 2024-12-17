@@ -1,21 +1,21 @@
 <script setup>
 import { ref } from 'vue'
 import {ElMessage, ElMessageBox} from "element-plus"
-import { bookReturnListService, bookReturnService, borrowAgainService } from "@/api/book.js"
-import request from "@/utils/request.js";
+import {bookReturnListService, bookReturnService, borrowAgainService, penaltyListService} from "@/api/book.js"
 
 // 控制抽屉是否显示
 const visibleDrawer = ref(false)
 const visibleDrawer2 = ref(false)
 
 // 添加表单数据模型
-const articleModel = ref({
+const overdueModel = ref({
   id: '',
   title: '',
   writer: '',
   coverImg: '',
   endTime: '',
   borrowTime: '',
+  penalty:'',
 })
 
 // 用户输入的图书名和作者名
@@ -42,33 +42,10 @@ const onCurrentChange = (num) => {
   bookReturnList(); // 重新加载数据
 }
 
-// 归还图书
-const returnBook = async (row) => {
-  // 假设有一个函数可以检查用户是否已经交了罚金，这里用checkFines来表示
-  let finesPaid = await checkFines(row.id); // 你需要实现这个函数
 
-  if (finesPaid==null||finesPaid===1 ) {
 
-    // 如果已经交罚金，执行归还操作
-    let result = await bookReturnService(row.id);
-    ElMessage.success(result.msg ? result.msg : "归还成功");
-    bookReturnList();
-  } else {
-    // 如果没有交罚金，弹出提示对话框
-    ElMessageBox({
-      title: '提示',
-      message: '您还有未交的罚金，请先交罚金再归还图书。',
-      type: 'warning'
-    });
-  }
-}
-// 检查用户是否已经交了罚金
-const checkFines = async (bookId) => {
-  // 这里需要根据你的后端API来实现
-  // 假设有一个API可以检查罚金状态
-  let result = await request.get(`/penalty/isPayed?bookId=${bookId}`);
-  return result.data; // 假设返回的数据中有一个isPaid字段表示罚金是否已交
-}
+
+
 // 搜索函数
 const bookReturnList = async () => {
   let params = {
@@ -78,24 +55,20 @@ const bookReturnList = async () => {
     writer: authorName.value ? authorName.value : null
   }
 
-  let result = await bookReturnListService(params);
+  let result = await  penaltyListService(params);
   total.value = result.data.total
-  articles.value = result.data.items;
+  articles.value = result.data;
+  console.log(result.data);
 }
 bookReturnList();
 
-// 续借逻辑
-const borrowAgain = async (row) => {
-  let result = await borrowAgainService(row.id)
-  ElMessage.success(result.msg ? result.msg : "续借成功")
-  bookReturnList();
-}
 
 // 重置搜索条件
 const resetSearch = () => {
   bookTitle.value = ''
   authorName.value = ''
 }
+
 
 // 格式化日期
 const formatDate = (dateString) => {
@@ -105,16 +78,19 @@ const formatDate = (dateString) => {
 
 // 判断是否逾期
 const isOverdue = (endTime) => {
-
   return new Date(endTime) < new Date();
 };
+//支付罚款
+const payPenalty = async (row) => {
+  window.open('http://localhost:8080/alipay/pay?overdueId=' + row.overdueId);
+}
 </script>
 
 <template>
   <el-card class="page-container">
     <template #header>
       <div class="header">
-        <span>归还图书</span>
+        <span>逾期处罚</span>
       </div>
     </template>
     <!-- 搜索表单 -->
@@ -134,7 +110,7 @@ const isOverdue = (endTime) => {
 
     <!-- 文章列表 -->
     <el-table :data="articles" style="width: 100%">
-      <el-table-column label="序号" width="100" prop="id" type="index"></el-table-column>
+      <el-table-column label="序号" width="100" prop="overdueId" type="index"></el-table-column>
       <el-table-column label="图书名" width="200" prop="title">
         <template #default="{ row }">
           <span>{{ row.title }}</span>
@@ -157,10 +133,14 @@ const isOverdue = (endTime) => {
           {{ formatDate(scope.row.endTime) }}
         </template>
       </el-table-column>
+      <el-table-column label="罚款金额" width="200" prop="penalty">
+        <template #default="{ row }">
+          <span>{{ row.penalty }}</span>
+        </template>
+      </el-table-column>
       <el-table-column label="操作" width="200">
         <template #default="{ row }">
-          <el-button type="success" plain @click="borrowAgain(row)">续借</el-button>
-          <el-button type="success" plain @click="returnBook(row)">归还</el-button>
+          <el-button type="success" plain @click="payPenalty(row)">支付罚金</el-button>
         </template>
       </el-table-column>
     </el-table>

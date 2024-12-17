@@ -22,4 +22,9 @@ public class BorrowRecordServiceImpl implements BorrowRecordService {
     public List<BorrowRecords> getOverdueRecordsById(Integer personId) {
        return borrowRecordMapper.findOverdueRecordsById(personId);
     }
+
+    @Override
+    public Integer isPaid(Integer borrowId) {
+        return borrowRecordMapper.isPaid(borrowId);
+    }
 }

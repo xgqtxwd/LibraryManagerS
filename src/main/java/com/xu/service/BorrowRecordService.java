@@ -10,4 +10,6 @@ public interface BorrowRecordService {
     public List<BorrowRecords> getOverdueRecords();
 
     public List<BorrowRecords> getOverdueRecordsById(Integer personId);
+
+    Integer isPaid(Integer borrowId);
 }
